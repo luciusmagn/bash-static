@@ -63,6 +63,7 @@ echo "= building bash"
 
 pushd bash-${bash_version}
 CFLAGS="$CFLAGS -Os -ffunction-sections -fdata-sections" LDFLAGS='-Wl,--gc-sections' ./configure --without-bash-malloc
+sed -i 's/^#define HAVE_DEV_FD.*$/#undef HAVE_DEV_FD/g' config.h
 make
 popd # bash-${bash_version}
 
